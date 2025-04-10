@@ -17,14 +17,25 @@ public class EventListener {
     }
 
     public void run() {
+        while (!readyToQuit()){
+
+        }
+
     }
 
     public Boolean readyToQuit() {
-        return null;
+//        assert EventTracker.getInstance() != null;
+        if  (eventTracker != null && eventTracker.equals("quit")){
+          return true;
+      }
+        return false;
     }
 
     public Boolean shouldReply() {
-        return null;
+        if (eventTracker.equals(messageToListenFor)){
+            return true;
+        }
+        return eventTracker != null && eventTracker.equals("quit");
     }
 
     public void reply() {

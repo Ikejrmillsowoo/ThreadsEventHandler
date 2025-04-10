@@ -16,13 +16,24 @@ public class EventTracker implements Tracker {
     }
 
     synchronized public void push(String message) {
+        if (this.tracker.containsKey(message)){
+            this.tracker.put(message, this.tracker.get(message)+1);
+        } else {
+            this.tracker.put(message, 1);
+        }
     }
 
     synchronized public Boolean has(String message) {
-        return null;
+        return this.tracker.get(message)>0;
     }
 
     synchronized public void handle(String message, EventHandler e) {
+        e.handle();
+        if (this.tracker.containsKey(message)){
+            this.tracker.put(message, this.tracker.get(message)-1);
+        } else {
+            throw new IllegalArgumentException(message + "count does not exist");
+        }
     }
 
     // Do not use this. This constructor is for tests only
