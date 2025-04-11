@@ -12,7 +12,12 @@ public class EventTracker implements Tracker {
     }
 
     synchronized public static EventTracker getInstance() {
-        return null;
+        return INSTANCE;
+    }
+
+    @Override
+    public Map<String, Integer> tracker() {
+        return tracker;
     }
 
     synchronized public void push(String message) {
