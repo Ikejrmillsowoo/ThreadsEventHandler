@@ -43,7 +43,7 @@ public class EventListener extends Thread {
     }
 
     public void reply() {
-
+        eventTracker.handle(messageToReplyWith,() -> {});
     }
 
 
